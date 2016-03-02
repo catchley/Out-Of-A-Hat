@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Out Of A Hat</string>
     <string name="emptyListText">Add Names</string>
-    <string name="nameHint">Add Name</string>
+    <string name="nameHint">Name</string>
     <string name="drawNameText">Draw Name</string>
-    <string name="addNameText">Add Name</string>
+    <string name="addNameText">Add To List</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
