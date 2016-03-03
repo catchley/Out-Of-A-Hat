@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 if (nameEntry.matches("")) {
                     Toast.makeText(MainActivity.this, "No Name Entered", Toast.LENGTH_LONG).show();
                 } else {
-                    names.add(nameEntry);
+                    names.add(0,nameEntry);
                     nameEditText.setText("");
                     adapter.notifyDataSetChanged();
 
