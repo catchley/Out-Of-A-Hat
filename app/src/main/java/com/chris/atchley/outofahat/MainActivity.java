@@ -2,14 +2,20 @@ package com.chris.atchley.outofahat;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
     public Button drawNameButton;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    private CheckBox deleteCheckBox;
 
     ArrayList<String> names = new ArrayList<String>();
+
+     NameAdapter adapter = new NameAdapter(names, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +76,10 @@ public class MainActivity extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.addNamEditText);
         nameTextView = (TextView) findViewById(R.id.drawnNameTextView);
         drawNameButton = (Button) findViewById(R.id.drawNameButton);
+        deleteCheckBox = (CheckBox) findViewById(R.id.deleteChosenCheckBox);
 
 
-        final NameAdapter adapter = new NameAdapter(names, this);
+
 
         ListView lview = (ListView) findViewById(R.id.myListView);
         lview.setAdapter(adapter);
@@ -81,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 if (nameEntry.matches("")) {
                     Toast.makeText(MainActivity.this, "No Name Entered", Toast.LENGTH_LONG).show();
                 } else {
-                    names.add(0,nameEntry);
+                    names.add(0, nameEntry);
                     nameEditText.setText("");
                     adapter.notifyDataSetChanged();
 
@@ -101,8 +111,11 @@ public class MainActivity extends AppCompatActivity {
                     Random randomize = new Random();
                     String random = names.get(randomize.nextInt(names.size()));
                     nameTextView.setText(random);
-                    names.remove(random);
+
                     adapter.notifyDataSetChanged();
+                    if(deleteCheckBox.isChecked()){
+                        names.remove(random);
+                    }
 
                 }
 
@@ -120,4 +133,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.action_Clear:
+                names.clear();
+                adapter.notifyDataSetChanged();
+
+
+                break;
+            // action with ID action_settings was selected
+            case R.id.action_Extras:
+
+                Intent intent = new Intent(MainActivity.this, ExtrasActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+
+        return true;
+
+    }
+
 }
