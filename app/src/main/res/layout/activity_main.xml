@@ -41,6 +41,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/ButtonAppTheme"
                 android:text="@string/addNameText"
                 android:id="@+id/addNameButton"
                 android:layout_below="@+id/addNamEditText"
@@ -73,11 +74,13 @@
                 android:text="@string/drawNameText"
                 android:id="@+id/drawNameButton"
                 android:layout_alignParentStart="false"
-                android:layout_below="@+id/imageView"/>
+                android:layout_below="@+id/imageView"
+                />
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/ButtonAppTheme"
                 android:text="Delete Chosen Name"
                 android:id="@+id/deleteChosenCheckBox"
                 android:layout_below="@+id/drawNameButton"
