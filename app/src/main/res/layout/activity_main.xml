@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.chris.atchley.outofahat.MainActivity"
-    android:background="#0af5da">
+    android:background="#00ffe1">
 
 
     <LinearLayout
@@ -39,7 +39,7 @@
                 android:layout_marginTop="0dp"/>
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ButtonAppTheme"
                 android:text="@string/addNameText"
@@ -71,6 +71,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/ButtonAppTheme"
                 android:text="@string/drawNameText"
                 android:id="@+id/drawNameButton"
                 android:layout_alignParentStart="false"

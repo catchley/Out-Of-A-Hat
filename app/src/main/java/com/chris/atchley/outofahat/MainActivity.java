@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private CheckBox deleteCheckBox;
+    public boolean checked;
 
     ArrayList<String> names = new ArrayList<String>();
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
+        checked = mSharedPreferences.getBoolean("Checkbox1", false);
+
 
         Set<String> set = mSharedPreferences.getStringSet(PREFS_FILE, null);
         if (set == null) {
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         nameTextView = (TextView) findViewById(R.id.drawnNameTextView);
         drawNameButton = (Button) findViewById(R.id.drawNameButton);
         deleteCheckBox = (CheckBox) findViewById(R.id.deleteChosenCheckBox);
+        deleteCheckBox.setChecked(checked);
 
 
 
@@ -129,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         Set<String> set = new HashSet<String>();
         set.addAll(names);
         mEditor.putStringSet(PREFS_FILE, set);
+        checked = deleteCheckBox.isChecked();
+        mEditor.putBoolean("Checkbox1", checked);
         mEditor.commit();
 
 
